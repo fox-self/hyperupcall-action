@@ -1,0 +1,16 @@
+name: "Edwin's GitHub Action"
+description: "Edwin's GitHub Action"
+author: 'Edwin Kofler'
+branding:
+  icon: 'maximize'
+  color: 'blue'
+inputs:
+  cfg:
+    description: 'Which configuration'
+    required: true
+  version:
+    description: 'What version to pull'
+    required: false
+runs:
+  using: 'node16'
+  main: 'index.js'
