@@ -1,6 +1,4 @@
-# Sample Action
-
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+# hyperupcall-action
 
 ## Inputs
 
@@ -14,8 +12,8 @@ The version of the configuration file to pull
 
 ## Example usage
 
-```yml
-uses: hyperupcall/action
+```yaml
+uses: hyperupcall/hyperupcall-action
 with:
   cfg: 'mkdocs'
 ```

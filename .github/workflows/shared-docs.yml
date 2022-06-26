@@ -1,0 +1,20 @@
+on:
+  workflow_call:
+    inputs:
+      repoName:
+        type: 'string'
+        description: 'Name of the repository'
+        required: true
+
+jobs:
+  build-doc:
+    name: Build Documentation
+    runs-on: 'ubuntu-20.04'
+    steps:
+      - uses: 'actions/checkout@v3'
+      - run: |
+          sudo apt-get install -y mkdocs
+
+          mkdocs build -f mkdocs.yml
+      - run: |
+          pipx run ghp-import --no-jekyll --push --remote origin --branch site site

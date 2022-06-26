@@ -1,16 +1,33 @@
-name: "Edwin's GitHub Action"
-description: "Edwin's GitHub Action"
-author: 'Edwin Kofler'
-branding:
-  icon: 'maximize'
-  color: 'blue'
+# name: "Edwin's GitHub Action"
+# description: "Edwin's GitHub Action"
+# author: 'Edwin Kofler'
+# branding:
+#   icon: 'maximize'
+#   color: 'blue'
+# inputs:
+#   myToken:
+#     description: 'GitHub token'
+#     required: true
+#   cfg:
+#     description: 'Which configuration'
+#     required: true
+#   version:
+#     description: 'What version to pull'
+#     required: false
+# runs:
+#   using: 'node16'
+#   main: 'dist/index.js'
+name: 'Your name here'
+description: 'Provide a description here'
+author: 'Your name or organization here'
 inputs:
-  cfg:
-    description: 'Which configuration'
+  milliseconds: # change this
     required: true
-  version:
-    description: 'What version to pull'
-    required: false
+    description: 'input description here'
+    default: 'default value if applicable'
+  myToken:
+    required: true
+    description: 'blah'
 runs:
   using: 'node16'
-  main: 'index.js'
+  main: 'dist/index.js'
