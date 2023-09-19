@@ -1,6 +1,7 @@
-name: 'ShellCheck'
+name: 'Lint'
 
 on:
+  workflow_call:
   push:
     branches-ignore: ['*-no-ci']
   pull_request:

@@ -1,6 +1,7 @@
 name: 'Build and Deploy Site'
 
 on:
+  workflow_call:
   push:
     branches-ignore: ['*-no-ci']
   pull_request:
