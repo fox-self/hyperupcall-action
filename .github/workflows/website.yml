@@ -1,32 +1,22 @@
-name: 'Build and Deploy Site'
-
 on:
   workflow_call:
-  push:
-    branches-ignore: ['*-no-ci']
-  pull_request:
-    branches-ignore: ['*-no-ci']
-
-permissions:
-  contents: 'read'
-  pages: 'write'
-  id-token: 'write'
+    inputs:
+      author:
+        type: 'string'
+        description: 'Author of the repository'
+        default: 'Edwin Kofler'
+        required: false
 
 defaults:
   run:
     shell: 'bash'
-
-  # TODO
-  # concurrency:
-  #   group: '${{ github.ref }}'
-  #   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: 'ubuntu-latest'
     if: "github.ref_name == 'main'"
     steps:
-      - uses: 'actions/checkout@v3'
+      - uses: 'actions/checkout@v4.1.0'
       - run: |
           cat > mkdocs.yml <<EOF
           site_name: '${{ github.event.repository.name }}'
@@ -34,8 +24,8 @@ jobs:
           repo_url: '${{ github.event.repository.url }}'
           # edit_uri: `edit/${settings.remoteBranchNameSource}/${settings.docsInputDir}/`
           # site_description: "" // TODO
-          site_author: Edwin Kofler
-          copyright: '© Edwin Kofler'
+          site_author: '${{ inputs.username }}'
+          copyright: '© ${{ inputs.username }}'
           # remote_branch: settings.remoteBranchName
           # remote_name: settings.remoteName
           docs_dir: './docs'
@@ -47,10 +37,10 @@ jobs:
           path: './output'
   deploy:
     environment:
-      name: github-pages
+      name: 'github-pages'
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
+    runs-on: 'ubuntu-latest'
+    needs: 'build'
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v2
+      - id: 'deployment'
+        uses: 'actions/deploy-pages@v2'

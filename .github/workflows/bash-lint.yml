@@ -1,0 +1,19 @@
+on:
+  workflow_call:
+
+permissions:
+  contents: 'read'
+  pages: 'write'
+  id-token: 'write'
+
+defaults:
+  run:
+    shell: 'bash'
+
+jobs:
+  shellcheck:
+    name: 'ShellCheck'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v4.1.0'
+      - uses: 'ludeeus/action-shellcheck@master'

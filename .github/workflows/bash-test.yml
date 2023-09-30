@@ -1,29 +1,13 @@
-name: 'Test'
-
 on:
   workflow_call:
-  push:
-    branches-ignore: ['*-no-ci']
-  pull_request:
-    branches-ignore: ['*-no-ci']
-
-permissions:
-  contents: 'read'
-  pages: 'write'
-  id-token: 'write'
 
 defaults:
   run:
     shell: 'bash'
 
-  # TODO
-  # concurrency:
-  #   group: '${{ github.ref }}'
-  #   cancel-in-progress: true
-
 jobs:
-  test:
-    name: 'Test Linux'
+  bats:
+    name: 'Bats'
     runs-on: '${{ matrix.os }}'
     strategy:
       fail-fast: false
@@ -89,7 +73,7 @@ jobs:
           ls -al "$subdir/bats-core/bin"
           echo i am pwd: "$PWD"
           printf '%s\n' "$subdir/bats-core/bin" >> "$GITHUB_PATH"
-      - uses: 'actions/checkout@v3'
+      - uses: 'actions/checkout@v4.1.0'
       - name: 'Run Test'
         run: |
           git config --global user.email "user@example.com"
